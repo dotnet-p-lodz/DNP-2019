@@ -7,8 +7,8 @@
     <ProjectGuid>{E9E935F5-8157-5080-8368-F5EEF8E2E28F}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CameraStarterKit</RootNamespace>
-    <AssemblyName>CameraStarterKit</AssemblyName>
+    <RootNamespace>IntelligentMirror</RootNamespace>
+    <AssemblyName>IntelligentMirror</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
@@ -122,6 +122,7 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\Face.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
