@@ -9,12 +9,36 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock
-            Text="Setup the UI!&#x0a;Add &lt;Image&gt; and some &lt;TextBox&gt;.&#x0a;If you expect some text to be long and require scrolling, put that &lt;TextBox&gt; in &lt;ScrollViewer&gt;.&#x0a;Maybe try using also &lt;Border&gt;?&#x0a;If you can set them in &lt;Grid&gt; without explicit margin values that's even better!&#x0a;Remember about 'Back' button!&#x0a;&#x0a;PS. You can open Toolbox by pressing CTRL+ALT+X and Properties window by pressing F4"
-            FontSize="40"
-            Margin="30"
-            VerticalAlignment="Center"
-            TextWrapping="WrapWholeWords"
-            HorizontalAlignment="Center" Height="Auto" Width="Auto"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image/>
+        <Border Grid.Row="0"
+                Grid.Column="1"
+                BorderThickness="5">
+            <ScrollViewer>
+                <TextBox IsReadOnly="True" 
+                         FontSize="20" 
+                         TextWrapping="Wrap" />
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="1" 
+                Grid.Column="0" 
+                BorderThickness="5">
+            <TextBox IsReadOnly="True"
+                     FontSize="20"
+                     TextWrapping="Wrap" />
+        </Border>
+
+        <Button Content="Back"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Column="1"
+                Grid.Row="1" />
     </Grid>
 </Page>
