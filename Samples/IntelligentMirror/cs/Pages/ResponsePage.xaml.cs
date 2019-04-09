@@ -43,17 +43,14 @@ namespace IntelligentMirror.Pages
                 using (IRandomAccessStream stream = await passedFile.OpenAsync(FileAccessMode.Read))
                 {
                     BitmapImage bitmap = new BitmapImage();
-                    //TODO: (1) Streams can be used only once, so you have to Clone Stream here, to be able to use it later again
-                    bitmap.SetSource(stream??);
+                    bitmap.SetSource(stream.CloneStream());
                     Img.Source = bitmap;
 
 
                     Img.RenderTransformOrigin = new Point(0.5, 0.5);
                     Img.RenderTransform = new ScaleTransform { ScaleX = -1 };
-                    //TODO: (2) Make analysis request to Microsoft Azure using data of the image. Where is it stored?
-                    string jsonResponse = await azure.MakeAnalysisRequest(??);
-                    //TODO: (3) Display somewhere received raw data, ex. in one of the TextBoxes
-                    //Your code here
+                    string jsonResponse = await azure.MakeAnalysisRequest(stream);
+                    ResponseBox.Text = jsonResponse;
                 }
             }
         }
