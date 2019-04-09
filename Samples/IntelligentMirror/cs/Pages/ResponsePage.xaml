@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="IntelligentMirror.Pages.ResponsePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -17,22 +17,28 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image/>
+        <Image x:Name="Img" Source="/Assets/splash-sdk.png" />
         <Border Grid.Row="0"
                 Grid.Column="1"
                 BorderThickness="5">
-            <ScrollViewer>
-                <TextBox IsReadOnly="True" 
-                         FontSize="20" 
-                         TextWrapping="Wrap" />
+            <ScrollViewer
+                x:Name="ScrollViewer">
+                <TextBox
+                    x:Name="ResponseBox"
+                    IsReadOnly="True"
+                    FontSize="20"
+                    TextWrapping="Wrap" />
             </ScrollViewer>
         </Border>
-        <Border Grid.Row="1" 
-                Grid.Column="0" 
-                BorderThickness="5">
-            <TextBox IsReadOnly="True"
-                     FontSize="20"
-                     TextWrapping="Wrap" />
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            BorderThickness="5">
+            <TextBox
+                x:Name="CaptionBox"
+                IsReadOnly="True"
+                FontSize="20"
+                TextWrapping="Wrap" />
         </Border>
 
         <Button x:Name="BackButton"

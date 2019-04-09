@@ -31,8 +31,9 @@ namespace IntelligentMirror.Pages
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             BackButton.Content = "Clicked!";
-            // TODO: Add names (meaningful!) to some of the controls in the XAML view.
-            // TODO: Test them by changing some of their properties after 'Back' button click
+            ResponseBox.Text = "Some response box text";
+            CaptionBox.Text = "And some text in caption";
+            Img.Width = 100;
         }
     }
 }
