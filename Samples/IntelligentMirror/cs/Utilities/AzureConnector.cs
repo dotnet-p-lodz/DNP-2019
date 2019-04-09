@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
 
 namespace IntelligentMirror
 {
@@ -28,7 +29,7 @@ namespace IntelligentMirror
         /// </summary>
         /// <param name="imageStream">Analyzed image</param>
         /// <returns>JSON response</returns>
-        public async Task<string> MakeAnalysisRequest(Stream imageStream)
+        public async Task<string> MakeAnalysisRequest(IRandomAccessStream imageStream)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _subscriptionKey);
@@ -40,7 +41,7 @@ namespace IntelligentMirror
 
             var uri = _uriBase + "?" + requestParameters;
 
-            using (var content = new StreamContent(imageStream))
+            using (var content = new StreamContent(imageStream.AsStream()))
             {
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                 var response = await client.PostAsync(uri, content);
