@@ -342,14 +342,15 @@ namespace IntelligentMirror
 
             try
             {
-                //var file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.ReplaceExisting);
-                //Debug.WriteLine("Photo taken! Saving to " + file.Path);
+                StorageFile file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.ReplaceExisting);
+                Debug.WriteLine("Photo taken! Saving to " + file.Path);
 
-                //var photoOrientation = CameraRotationHelper.ConvertSimpleOrientationToPhotoOrientation(_rotationHelper.GetCameraCaptureOrientation());
+                PhotoOrientation photoOrientation = CameraRotationHelper.ConvertSimpleOrientationToPhotoOrientation(_rotationHelper.GetCameraCaptureOrientation());
 
-                //await ReencodeAndSavePhotoAsync(stream, file, photoOrientation);
-                //Debug.WriteLine("Photo saved!");
+                await ReencodeAndSavePhotoAsync(stream, file, photoOrientation);
+                Debug.WriteLine("Photo saved!");
 
+                //TODO: (1) Add the file as the second parameter of Navigate in order to pass it to the ResponsePage
                 Frame.Navigate(typeof(ResponsePage));
             }
             catch (Exception ex)
