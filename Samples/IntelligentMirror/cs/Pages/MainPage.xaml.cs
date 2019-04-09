@@ -31,6 +31,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using IntelligentMirror.Pages;
 
 namespace IntelligentMirror
 {
@@ -341,13 +342,16 @@ namespace IntelligentMirror
 
             try
             {
-                var file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.ReplaceExisting);
-                Debug.WriteLine("Photo taken! Saving to " + file.Path);
+                //var file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.ReplaceExisting);
+                //Debug.WriteLine("Photo taken! Saving to " + file.Path);
 
-                var photoOrientation = CameraRotationHelper.ConvertSimpleOrientationToPhotoOrientation(_rotationHelper.GetCameraCaptureOrientation());
+                //var photoOrientation = CameraRotationHelper.ConvertSimpleOrientationToPhotoOrientation(_rotationHelper.GetCameraCaptureOrientation());
 
-                await ReencodeAndSavePhotoAsync(stream, file, photoOrientation);
-                Debug.WriteLine("Photo saved!");
+                //await ReencodeAndSavePhotoAsync(stream, file, photoOrientation);
+                //Debug.WriteLine("Photo saved!");
+
+                //TODO: (1) Complete this line so it navigates to ResponsePage. Refer to line 72 in App.xaml.cs. Ignore second parameter here.
+                Frame.Navigate(??);
             }
             catch (Exception ex)
             {

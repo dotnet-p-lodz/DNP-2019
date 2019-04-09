@@ -30,10 +30,7 @@ namespace IntelligentMirror.Pages
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            BackButton.Content = "Clicked!";
-            ResponseBox.Text = "Some response box text";
-            CaptionBox.Text = "And some text in caption";
-            Img.Width = 100;
+            //TODO: (2) Navigate to MainPage after button click. Instead on Navigate you can try to find a method which allows you to Go Back one page
         }
     }
 }
