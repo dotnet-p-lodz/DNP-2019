@@ -34,23 +34,19 @@ namespace IntelligentMirror.Pages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //TODO: (2) What type has our file on Main Page?
-            ?? passedFile = e.Parameter as ??;
+            StorageFile passedFile = e.Parameter as StorageFile;
 
-            //TODO: (3) Make sure passedFile is not null - check if it's different from null (replace '??' with condition check)
-            if (??)
+            if (passedFile != null)
             {
                 using (IRandomAccessStream stream = await passedFile.OpenAsync(FileAccessMode.Read))
                 {
                     BitmapImage bitmap = new BitmapImage();
-                    //TODO: (4) Now our file is stored in stream variable. Set Source of the bitmap to that stream
-                    //Your code here. Only one line! 
-                    //TODO: (5) And now set Source of the Image from the XAML view to that bitmap (just assign; Source is not a method)
-                    //Your code here. Only one line!
+                    bitmap.SetSource(stream);
+                    Img.Source = bitmap;
 
-                    //TODO: This code flips the image horizontally. Just replace ?? with x:Name of your Image from XAML view
-                    ??.RenderTransformOrigin = new Point(0.5, 0.5);
-                    ??.RenderTransform = new ScaleTransform { ScaleX = -1 };
+
+                    Img.RenderTransformOrigin = new Point(0.5, 0.5);
+                    Img.RenderTransform = new ScaleTransform { ScaleX = -1 };
                 }
             }
         }

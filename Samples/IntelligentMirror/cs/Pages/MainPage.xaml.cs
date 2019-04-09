@@ -350,8 +350,7 @@ namespace IntelligentMirror
                 await ReencodeAndSavePhotoAsync(stream, file, photoOrientation);
                 Debug.WriteLine("Photo saved!");
 
-                //TODO: (1) Add the file as the second parameter of Navigate in order to pass it to the ResponsePage
-                Frame.Navigate(typeof(ResponsePage));
+                Frame.Navigate(typeof(ResponsePage), file);
             }
             catch (Exception ex)
             {
