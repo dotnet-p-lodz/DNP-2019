@@ -49,6 +49,7 @@
 
   <Capabilities>
     <uap:Capability Name="picturesLibrary" />
+    <Capability Name="internetClientServer"/>
     <DeviceCapability Name="webcam" />
     <DeviceCapability Name="microphone"/>
   </Capabilities>
