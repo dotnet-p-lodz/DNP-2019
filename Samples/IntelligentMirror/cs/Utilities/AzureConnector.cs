@@ -21,7 +21,10 @@ namespace IntelligentMirror
         {
             _subscriptionKey = subscriptionKey ?? throw new ArgumentNullException(nameof(subscriptionKey));
             _uriBase = uriBase ?? throw new ArgumentNullException(nameof(uriBase));
-            _uriBase += "/detect";
+            if (!_uriBase.EndsWith("/detect"))
+            {
+                _uriBase += "/detect";
+            }
         }
 
         /// <summary>
@@ -37,7 +40,7 @@ namespace IntelligentMirror
             var requestParameters = "returnFaceId=true" +
                                     "&returnFaceLandmarks=false" +
                                     "&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses," +
-                                    "emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
+                                    "emotion,hair,makeup,accessories";
 
             var uri = _uriBase + "?" + requestParameters;
 
