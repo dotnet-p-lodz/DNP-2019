@@ -115,11 +115,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ResponsePage.xaml.cs">
+      <DependentUpon>ResponsePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\AzureConnector.cs" />
     <Compile Include="Utilities\CameraRotationHelper.cs" />
-    <Compile Include="Pages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs" />
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -140,6 +141,10 @@
       <Link>Pages\MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

@@ -22,9 +22,17 @@ namespace IntelligentMirror.Pages
     /// </summary>
     public sealed partial class ResponsePage : Page
     {
+        private AzureConnector azure = new AzureConnector("<SUBSCRIPTION KEY>", @"<BASE URI>/vision/v1.0");
         public ResponsePage()
         {
             this.InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackButton.Content = "Clicked!";
+            // TODO: Add names (meaningful!) to some of the controls in the XAML view.
+            // TODO: Test them by changing some of their properties after 'Back' button click
         }
     }
 }
