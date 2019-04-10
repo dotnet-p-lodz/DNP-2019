@@ -51,13 +51,16 @@ namespace IntelligentMirror.Pages
                     Img.RenderTransform = new ScaleTransform { ScaleX = -1 };
                     string jsonResponse = await azure.MakeAnalysisRequest(stream);
 
-                    Face face = Face.FromJson(jsonResponse).FirstOrDefault();
-                    if (face != null)
+                    //TODO: (1) Set Caption and Response text to empty string ("") at the beginning
+                    List<Face> faces = Face.FromJson(jsonResponse);
+                    foreach (Face face in faces)
                     {
-                        SetupResponse(face);
-                        SetupCaption(face);
+                        //TODO: (2) Slightly modify SetupResponse and SetupCaption
+                        //TODO: (3) Use SetupResponse and SetupCaption on each face
                     }
-                    else
+
+                    //TODO: (4) If faces.Count is smaller than 1, then display default text
+                    if (??)
                     {
                         ResponseBox.Text = "No faces found";
                         CaptionBox.Text = "No faces found";
@@ -68,7 +71,7 @@ namespace IntelligentMirror.Pages
 
         private void SetupResponse(Face face)
         {
-            string response = $"Age: {face.FaceAttributes.Age}\n";
+            string response = $"\nAge: {face.FaceAttributes.Age}\n";
             response += $"Gender: {face.FaceAttributes.Gender}\n";
             response += $"Glasses: {face.FaceAttributes.Glasses}\n";
 
@@ -78,12 +81,13 @@ namespace IntelligentMirror.Pages
             string hairText = GetHighestHair(face.FaceAttributes.Hair.HairColor);
             response += $"Hair: {hairText}\n";
 
+            //TODO: (2.1) Instead of overwriting ResponseBox.text, add current response to it
             ResponseBox.Text = response;
         }
 
         private void SetupCaption(Face face)
         {
-            string caption = $"{face.FaceAttributes.Age}-year-old ";
+            string caption = $"\n{face.FaceAttributes.Age}-year-old ";
 
             if (face.FaceAttributes.Gender == "male")
             {
@@ -101,6 +105,7 @@ namespace IntelligentMirror.Pages
                 caption += "wearing glasses";
             }
 
+            //TODO: (2.1) Instead of overwriting CaptionBox.text, add current caption to it
             CaptionBox.Text = caption;
         }
 
