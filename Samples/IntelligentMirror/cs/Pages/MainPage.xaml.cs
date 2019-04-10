@@ -22,7 +22,6 @@ using Windows.Graphics.Imaging;
 using Windows.Media;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
-using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
@@ -158,11 +157,6 @@ namespace IntelligentMirror
         }
 
         private async void PhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            await TakePhotoAsync();
-        }
-
-        private async void HardwareButtons_CameraPressed(object sender, CameraEventArgs e)
         {
             await TakePhotoAsync();
         }
@@ -435,7 +429,6 @@ namespace IntelligentMirror
                     else
                     {
                         await CleanupCameraAsync();
-                        await CleanupUiAsync();
                     }
                 };
                 _setupTask = setupAsync();
@@ -453,34 +446,9 @@ namespace IntelligentMirror
             // Attempt to lock page to landscape orientation to prevent the CaptureElement from rotating, as this gives a better experience
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
 
-            // Hide the status bar
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
-            }
-
-            RegisterEventHandlers();
             var picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
             // Fall back to the local app storage if the Pictures Library is not available
             _captureFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
-        }
-
-        /// <summary>
-        /// Unregisters event handlers for hardware buttons and orientation sensors, allows the StatusBar (on Phone) to show, and removes the page orientation lock
-        /// </summary>
-        /// <returns></returns>
-        private async Task CleanupUiAsync()
-        {
-            UnregisterEventHandlers();
-
-            // Show the status bar
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
-            }
-
-            // Revert orientation preferences
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
         }
 
         /// <summary>
@@ -490,30 +458,6 @@ namespace IntelligentMirror
         {
             // The buttons should only be enabled if the preview started successfully
             PhotoButton.IsEnabled = _isPreviewing;
-        }
-
-        /// <summary>
-        /// Registers event handlers for hardware buttons and orientation sensors, and performs an initial update of the UI rotation
-        /// </summary>
-        private void RegisterEventHandlers()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                HardwareButtons.CameraPressed += HardwareButtons_CameraPressed;
-            }
-            _systemMediaControls.PropertyChanged += SystemMediaControls_PropertyChanged;
-        }
-
-        /// <summary>
-        /// Unregisters event handlers for hardware buttons and orientation sensors
-        /// </summary>
-        private void UnregisterEventHandlers()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                HardwareButtons.CameraPressed -= HardwareButtons_CameraPressed;
-            }
-            _systemMediaControls.PropertyChanged -= SystemMediaControls_PropertyChanged;
         }
 
         /// <summary>
