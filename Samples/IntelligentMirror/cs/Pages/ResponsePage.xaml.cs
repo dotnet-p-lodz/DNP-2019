@@ -71,6 +71,15 @@ namespace IntelligentMirror.Pages
             string response = $"Age: {face.FaceAttributes.Age}\n";
             response += $"Gender: {face.FaceAttributes.Gender}\n";
             response += $"Glasses: {face.FaceAttributes.Glasses}\n";
+
+            string emotionText = GetHighestEmotion(face.FaceAttributes.Emotion); //TODO: (1) Implement the function
+            //TODO: (2) Remember to add emotionText to the response!
+            //Your code here. One line only!
+
+            string hairText = GetHighestHair(face.FaceAttributes.Hair.HairColor); //TODO: (3) Implement the function
+            //TODO: (4) Remember to add hairText to the response!
+            //Your code here. One line only!
+
             ResponseBox.Text = response;
         }
 
@@ -92,7 +101,44 @@ namespace IntelligentMirror.Pages
                 caption += "wearing glasses";
             }
 
+            //TODO: (5) Using the same functions as in SetupResponse, make caption text more detailed
+            //Your code here
+
             CaptionBox.Text = caption;
+        }
+
+        private string GetHighestEmotion(Emotion emotion)
+        {
+            string emotionText = "Neutral";
+            double highestConfidence = 0.0;
+            //TODO: (1.1) Check if some emotion (ex. emotion.Anger) is higher than highestConfidence til now
+            if (??)
+            {
+                //TODO: (1.2) If yes, then set new emotionText and overwrite highestConfidence with new value
+                //Your code here
+            }
+
+            //TODO: (1.3) Do it for several emotions, ex. happiness, surprise, disgust etc.
+            //Your code here
+
+            return emotionText;
+        }
+
+        private static string GetHighestHair(List<HairColor> hairColors)
+        {
+            string hairText = "other";
+            double highestConfidence = 0.0;
+            foreach (HairColor hairColor in hairColors)
+            {
+                //TODO: (3.1) Check if current hairColor.Confidence is higher than highestConfidence
+                if (??)
+                {
+                    //TODO: (3.2) If yes, then set new hairText to hairColor.Color and overwrite highestConfidence with new value
+                    //Your code here
+                }
+            }
+
+            return hairText;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
