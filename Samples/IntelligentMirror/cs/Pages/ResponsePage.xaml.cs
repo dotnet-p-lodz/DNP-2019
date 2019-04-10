@@ -51,16 +51,16 @@ namespace IntelligentMirror.Pages
                     Img.RenderTransform = new ScaleTransform { ScaleX = -1 };
                     string jsonResponse = await azure.MakeAnalysisRequest(stream);
 
-                    //TODO: (1) Set Caption and Response text to empty string ("") at the beginning
+                    CaptionBox.Text = "";
+                    ResponseBox.Text = "";
                     List<Face> faces = Face.FromJson(jsonResponse);
                     foreach (Face face in faces)
                     {
-                        //TODO: (2) Slightly modify SetupResponse and SetupCaption
-                        //TODO: (3) Use SetupResponse and SetupCaption on each face
+                        SetupResponse(face);
+                        SetupCaption(face);
                     }
 
-                    //TODO: (4) If faces.Count is smaller than 1, then display default text
-                    if (??)
+                    if (faces.Count < 1)
                     {
                         ResponseBox.Text = "No faces found";
                         CaptionBox.Text = "No faces found";
@@ -81,8 +81,7 @@ namespace IntelligentMirror.Pages
             string hairText = GetHighestHair(face.FaceAttributes.Hair.HairColor);
             response += $"Hair: {hairText}\n";
 
-            //TODO: (2.1) Instead of overwriting ResponseBox.text, add current response to it
-            ResponseBox.Text = response;
+            ResponseBox.Text += response;
         }
 
         private void SetupCaption(Face face)
@@ -105,8 +104,7 @@ namespace IntelligentMirror.Pages
                 caption += "wearing glasses";
             }
 
-            //TODO: (2.1) Instead of overwriting CaptionBox.text, add current caption to it
-            CaptionBox.Text = caption;
+            CaptionBox.Text += caption;
         }
 
         private string GetHighestEmotion(Emotion emotion)
