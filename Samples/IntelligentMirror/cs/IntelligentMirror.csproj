@@ -115,8 +115,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CameraRotationHelper.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Utilities\AzureConnector.cs" />
+    <Compile Include="Utilities\CameraRotationHelper.cs" />
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
@@ -136,7 +137,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="..\shared\MainPage.xaml">
-      <Link>MainPage.xaml</Link>
+      <Link>Pages\MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
