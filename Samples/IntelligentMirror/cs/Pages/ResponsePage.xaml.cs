@@ -72,13 +72,11 @@ namespace IntelligentMirror.Pages
             response += $"Gender: {face.FaceAttributes.Gender}\n";
             response += $"Glasses: {face.FaceAttributes.Glasses}\n";
 
-            string emotionText = GetHighestEmotion(face.FaceAttributes.Emotion); //TODO: (1) Implement the function
-            //TODO: (2) Remember to add emotionText to the response!
-            //Your code here. One line only!
+            string emotionText = GetHighestEmotion(face.FaceAttributes.Emotion);
+            response += $"Emotion: {emotionText}\n";
 
-            string hairText = GetHighestHair(face.FaceAttributes.Hair.HairColor); //TODO: (3) Implement the function
-            //TODO: (4) Remember to add hairText to the response!
-            //Your code here. One line only!
+            string hairText = GetHighestHair(face.FaceAttributes.Hair.HairColor);
+            response += $"Hair: {hairText}\n";
 
             ResponseBox.Text = response;
         }
@@ -96,13 +94,12 @@ namespace IntelligentMirror.Pages
                 caption += "woman ";
             }
 
+            caption += $"with {GetHighestHair(face.FaceAttributes.Hair.HairColor)} hair ";
+
             if (face.FaceAttributes.Glasses != "NoGlasses")
             {
                 caption += "wearing glasses";
             }
-
-            //TODO: (5) Using the same functions as in SetupResponse, make caption text more detailed
-            //Your code here
 
             CaptionBox.Text = caption;
         }
@@ -111,15 +108,26 @@ namespace IntelligentMirror.Pages
         {
             string emotionText = "Neutral";
             double highestConfidence = 0.0;
-            //TODO: (1.1) Check if some emotion (ex. emotion.Anger) is higher than highestConfidence til now
-            if (??)
+            if (emotion.Anger > highestConfidence)
             {
-                //TODO: (1.2) If yes, then set new emotionText and overwrite highestConfidence with new value
-                //Your code here
+                emotionText = "Anger";
+                highestConfidence = emotion.Anger;
             }
-
-            //TODO: (1.3) Do it for several emotions, ex. happiness, surprise, disgust etc.
-            //Your code here
+            if (emotion.Happiness > highestConfidence)
+            {
+                emotionText = "Happiness";
+                highestConfidence = emotion.Happiness;
+            }
+            if (emotion.Disgust > highestConfidence)
+            {
+                emotionText = "Disgust";
+                highestConfidence = emotion.Disgust;
+            }
+            if (emotion.Surprise > highestConfidence)
+            {
+                emotionText = "Surprise";
+                highestConfidence = emotion.Surprise;
+            }
 
             return emotionText;
         }
@@ -130,11 +138,10 @@ namespace IntelligentMirror.Pages
             double highestConfidence = 0.0;
             foreach (HairColor hairColor in hairColors)
             {
-                //TODO: (3.1) Check if current hairColor.Confidence is higher than highestConfidence
-                if (??)
+                if (hairColor.Confidence > highestConfidence)
                 {
-                    //TODO: (3.2) If yes, then set new hairText to hairColor.Color and overwrite highestConfidence with new value
-                    //Your code here
+                    hairText = hairColor.Color;
+                    highestConfidence = hairColor.Confidence;
                 }
             }
 
