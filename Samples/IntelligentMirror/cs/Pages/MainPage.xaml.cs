@@ -347,7 +347,7 @@ namespace IntelligentMirror
 
             try
             {
-                var file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.GenerateUniqueName);
+                var file = await _captureFolder.CreateFileAsync("SimplePhoto.jpg", CreationCollisionOption.ReplaceExisting);
                 Debug.WriteLine("Photo taken! Saving to " + file.Path);
 
                 var photoOrientation = CameraRotationHelper.ConvertSimpleOrientationToPhotoOrientation(_rotationHelper.GetCameraCaptureOrientation());
